@@ -53,4 +53,20 @@ public class WeatherForecastController(ILogger<WeatherForecastController> logger
         DataWeatherForecasts.Add(forecast);
         return Ok(DataWeatherForecasts);
     }
+    
+    [HttpDelete("{summary}", Name = "DeleteWeatherForecast")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<IEnumerable<WeatherForecast>> Delete(string summary)
+    {
+        var forecast = DataWeatherForecasts.FirstOrDefault(x => x.Summary == summary);
+        
+        if (forecast == null)
+        {
+            return NotFound("Summary not found");
+        }
+        
+        DataWeatherForecasts.Remove(forecast);
+        return Ok(DataWeatherForecasts);
+    }
 }
