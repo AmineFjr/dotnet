@@ -39,6 +39,21 @@ public class WeatherForecastController(ILogger<WeatherForecastController> logger
         return DataWeatherForecasts;
     }
     
+    [HttpGet("{summary}", Name = "GetWeatherForecastBySummary")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<WeatherForecast> GetBySummary(string summary)
+    {
+        var forecast = DataWeatherForecasts.FirstOrDefault(x => x.Summary == summary);
+    
+        if (forecast == null)
+        {
+            return NotFound("Summary not found");
+        }
+    
+        return Ok(forecast);
+    }
+    
     [HttpPost(Name = "PostWeatherForecast")]
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status201Created)]
