@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using BlazorApp.Components.Pages;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,26 +6,23 @@ namespace BlazorApp.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController(ILogger<WeatherForecastController> logger) : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-    private static List<WeatherForecast> DataWeatherForecasts = new List<WeatherForecast>();
-
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
-    }
+    private static readonly List<WeatherForecast> DataWeatherForecasts = [];
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<IEnumerable<WeatherForecast>> Get()
     {
-        if (DataWeatherForecasts.Count > 0)
+        var countData = DataWeatherForecasts.Count;
+        
+        if (countData > 0)
         {
             return DataWeatherForecasts;
         }
@@ -37,14 +35,14 @@ public class WeatherForecastController : ControllerBase
         }).ToArray();
         
         DataWeatherForecasts.AddRange(forecasts);
-        var countData = DataWeatherForecasts.Count;
-        
-        _logger.LogInformation($"GetWeatherForecast: {countData} data");
         
         return DataWeatherForecasts;
     }
     
     [HttpPost(Name = "PostWeatherForecast")]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult<IEnumerable<WeatherForecast>> Post([FromBody] WeatherForecast forecast)
     {
         if (DataWeatherForecasts.Any(x => x.Summary == forecast.Summary))
