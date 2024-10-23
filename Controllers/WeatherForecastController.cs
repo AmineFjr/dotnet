@@ -1,5 +1,4 @@
 using System.Net.Mime;
-using BlazorApp.Components.Pages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp.Controllers;
@@ -14,7 +13,7 @@ public class WeatherForecastController(ILogger<WeatherForecastController> logger
     };
 
     private static readonly List<WeatherForecast> DataWeatherForecasts = [];
-
+    
     [HttpGet(Name = "GetWeatherForecast")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
