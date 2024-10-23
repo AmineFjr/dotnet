@@ -5,7 +5,7 @@ namespace BlazorApp.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController(ILogger<WeatherForecastController> logger) : ControllerBase
+public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
