@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BlazorApp.Models;
 
-namespace MvcMovie.Data
+namespace BlazorApp.Data
 {
     public class MvcMovieContext : DbContext
     {
