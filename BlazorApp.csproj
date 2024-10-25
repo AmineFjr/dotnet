@@ -9,6 +9,9 @@
   <ItemGroup>
     <None Remove="Controllers\HelloWorkdController" />
     <None Remove="Migrations\**" />
+    <None Remove="MvcMovieContext-04bf33e0-f130-44f4-8174-76e370134d2b.db" />
+    <None Remove="MvcMovieContext-04bf33e0-f130-44f4-8174-76e370134d2b.db-shm" />
+    <None Remove="MvcMovieContext-04bf33e0-f130-44f4-8174-76e370134d2b.db-wal" />
   </ItemGroup>
 
   <ItemGroup>
