@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    [Migration("20241025105820_InitialCreate")]
+    [Migration("20241026144851_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
