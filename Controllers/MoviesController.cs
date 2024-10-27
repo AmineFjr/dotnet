@@ -40,13 +40,13 @@ namespace BlazorApp.Controllers
                 movies = movies.Where(x => x.Genre == movieGenre);
             }
 
-            var movieGenreVm = new MovieGenreViewModel
+            var movieGenreVM = new MovieGenreViewModel
             {
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
                 Movies = await movies.ToListAsync()
             };
 
-            return View(movieGenreVm);
+            return View(movieGenreVM);
         }
 
         // GET: Movies/Details/5
