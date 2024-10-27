@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Controllers\HelloWorkdController" />
-    <None Remove="Migrations\**" />
     <None Remove="MvcMovieContext-04bf33e0-f130-44f4-8174-76e370134d2b.db" />
     <None Remove="MvcMovieContext-04bf33e0-f130-44f4-8174-76e370134d2b.db-shm" />
     <None Remove="MvcMovieContext-04bf33e0-f130-44f4-8174-76e370134d2b.db-wal" />
@@ -29,15 +29,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Migrations\**" />
+    <Compile Include="Migrations\MvcMovieContextModelSnapshot.cs" />
+    <Compile Include="**\*.cs" />
   </ItemGroup>
 
 </Project>
